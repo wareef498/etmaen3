@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - إطمئن</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            direction: rtl;
+            color: black;
+        }
+
+        /* Title */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Input styling */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #d9d9d9;
+            border-radius: 5px;
+            background-color: #dce1d9;
+            font-size: 14px;
+            color: black;
+        }
+
+        /* Button styling */
+        .login-btn {
+            background-color: rgb(152, 156, 131);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-btn:hover {
+            background-color: rgb(132, 136, 111);
+        }
+
+        /* Error message */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Forgot Password link */
+        .forgot-password {
+            font-size: 14px;
+            color: black;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div style="padding: 40px; text-align: center;">
+        <h1>تسجيل الدخول</h1>
+
+        <input type="email" id="login-email" placeholder="البريد الإلكتروني" required>
+        <input type="password" id="login-password" placeholder="كلمة المرور" required>
+
+        <p class="error-message" id="error-message"></p>
+        <button class="login-btn">تسجيل الدخول</button>
+
+        <!-- Forgot Password link -->
+        <a href="forgetpass.html" class="forgot-password">نسيت كلمة المرور؟</a>
+    </div>
+
+    <script>
+        document.querySelector('.login-btn').addEventListener('click', function() {
+            // Get input values
+            const loginEmail = document.getElementById('login-email').value;
+            const loginPassword = document.getElementById('login-password').value;
+
+            // Retrieve stored user data
+            const storedEmail = localStorage.getItem('userEmail');
+            const storedPassword = localStorage.getItem('userPassword');
+
+            // Validate credentials
+            if (loginEmail === storedEmail && loginPassword === storedPassword) {
+                // Redirect to the home page if login is successful
+                window.location.href = 'firstpage.html';
+            } else {
+                // Display error message
+                document.getElementById('error-message').textContent = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+            }
+        });
+    </script>
+</body>
+</html>
